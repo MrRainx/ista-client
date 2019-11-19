@@ -1,6 +1,6 @@
 import React, {
   //Component,
-  useEffect, useState
+  useState
 } from 'react';
 import './App.css';
 /*
@@ -13,7 +13,6 @@ class App extends Component {
     }
     this.contar = this.contar.bind(this);
   }
-
   contar() {
     this.setState(state => ({
       contador: state.contador + 1
@@ -21,20 +20,12 @@ class App extends Component {
   }
 
   render() {
-
     return (
       <div className="App">
-
-
         <h5>{this.state.contador}</h5>
-
-
         <button class="btn" onClick={this.contar}>
           Aumentar
         </button>
-
-
-
       </div>
     );
 
@@ -44,16 +35,26 @@ class App extends Component {
 */
 
 const App = (props) => {
-  const [contador, setCount] = useState(0);
+  const [user, setUser] = useState({});
+
+  const buscar = async () => {
+
+    const json = await fetch('https://jsonplaceholder.typicode.com/todos/1')
+
+    const user = await json.json().catch(err => console.log)
+
+    setUser(user)
+  }
+
 
   return (
     <div className="App">
-      <h5>{contador}</h5>
-      <button class="btn" onClick={() => setCount(contador + 1)}>
+      <h5>{!user.title ? 'HOLA MUNDO' : user.title}</h5>
+      <button class="btn" onClick={() => buscar()}>
         Aumentar
     </button>
     </div>
-  )
+  );
 
 }
 
