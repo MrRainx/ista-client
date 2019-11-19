@@ -1,41 +1,56 @@
 import React, {
-  //Component,
-  useState
+  Component,
+  //useState
 } from 'react';
 import './App.css';
-/*
+
 class App extends Component {
 
   constructor(props) {
     super(props)
     this.state = {
-      contador: 0
+      num: 0,
+      user: {}
     }
-    this.contar = this.contar.bind(this);
+
+    this.buscar = this.buscar.bind(this);
+
   }
-  contar() {
+
+  async buscar() {
+
+    const json = await fetch('https://jsonplaceholder.typicode.com/todos/' + (this.state.num + 1))
+    const user = await json.json().catch(err => console.log)
+
     this.setState(state => ({
-      contador: state.contador + 1
+      num: state.num + 1,
+      user: user
     }));
   }
+
 
   render() {
     return (
       <div className="App">
-        <h5>{this.state.contador}</h5>
-        <button class="btn" onClick={this.contar}>
-          Aumentar
-        </button>
+
+        <h5>{!this.state.user.title ? 'NO HA HECHO NINGUNA PETICION' : this.state.user.title}</h5>
+
+        <p>Ha hecho {this.state.num} peticiones</p>
+
+        <button class="btn" onClick={this.buscar}>Aumentar</button>
+
       </div>
     );
 
   }
 
 }
-*/
 
-const App = (props) => {
+/*
+const App = () => {
+
   const [user, setUser] = useState({});
+  const [num, setNum] = useState(0);
 
   const buscar = async () => {
 
@@ -44,19 +59,25 @@ const App = (props) => {
     const user = await json.json().catch(err => console.log)
 
     setUser(user)
+    setNum(num + 1)
   }
 
 
   return (
     <div className="App">
-      <h5>{!user.title ? 'HOLA MUNDO' : user.title}</h5>
-      <button class="btn" onClick={() => buscar()}>
+
+      <h5>{!user.title ? 'NO HA HECHO NINGUNA PETICION' : user.title}</h5>
+
+      <p>Ha hecho {num} peticiones</p>
+
+      <button class="btn" onClick={buscar}>
         Aumentar
     </button>
+
     </div>
   );
 
 }
-
+*/
 
 export default App;
