@@ -1,26 +1,61 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {
+  //Component,
+  useEffect, useState
+} from 'react';
 import './App.css';
+/*
+class App extends Component {
 
-function App() {
+  constructor(props) {
+    super(props)
+    this.state = {
+      contador: 0
+    }
+    this.contar = this.contar.bind(this);
+  }
+
+  contar() {
+    this.setState(state => ({
+      contador: state.contador + 1
+    }));
+  }
+
+  render() {
+
+    return (
+      <div className="App">
+
+
+        <h5>{this.state.contador}</h5>
+
+
+        <button class="btn" onClick={this.contar}>
+          Aumentar
+        </button>
+
+
+
+      </div>
+    );
+
+  }
+
+}
+*/
+
+const App = (props) => {
+  const [contador, setCount] = useState(0);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h5>{contador}</h5>
+      <button class="btn" onClick={() => setCount(contador + 1)}>
+        Aumentar
+    </button>
     </div>
-  );
+  )
+
 }
+
 
 export default App;
